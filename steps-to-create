@@ -21,4 +21,52 @@ Restart Nginx:
 sudo systemctl restart nginx
 
 Your front-end should now be live! 🎉 Let me know if you need any modifications. 🚀
+**************************************************
+
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y nodejs npm nginx
+Verify the installations:
+
+node -v
+npm -v
+nginx -v
+
+Step 2: Build Your React Project
+1. Transfer your React project to the server (via SCP or Git).
+2. Navigate to your project folder:
+cd /path-to-your-react-project
+3. Install dependencies
+npm install
+4. Build the project:
+  npm run build
+This creates a build/ folder containing the optimized static files
+
+Step 3: Configure Nginx for React
+
+1. Move the build folder to the Nginx directory:
+   sudo mv build /var/www/html/ecommerce
+2, Open the Nginx configuration file
+ sudo nano /etc/nginx/sites-available/ecommerce
+3. Add this nginx configuration:
+
+server {
+    listen 80;
+    server_name your-domain.com;  # Replace with your domain or IP
+    root /var/www/html/ecommerce;
+    index index.html;
+    
+    location / {
+        try_files $uri /index.html;
+    }
+}
+
+4. Enable configuration.
+sudo ln -s /etc/nginx/sites-available/ecommerce /etc/nginx/sites-enabled/
+
+5. Test and restart nginx:
+sudo nginx -t
+sudo systemctl restart nginx
+
+Verify the deployemnt by connecting gui.
+
 
