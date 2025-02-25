@@ -1,0 +1,44 @@
+import React from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ShoppingCart } from "lucide-react";
+
+const HomePage = () => {
+  return (
+    <div className="min-h-screen bg-white text-gray-900">
+      {/* Navbar */}
+      <nav className="bg-orange-500 p-4 flex justify-between items-center">
+        <img src="/logo.png" alt="Amma's Home Flavors" className="h-12" />
+        <div>
+          <Button variant="ghost" className="text-white mx-2">Home</Button>
+          <Button variant="ghost" className="text-white mx-2">Shop</Button>
+          <Button variant="ghost" className="text-white mx-2">Contact</Button>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <header className="bg-orange-100 p-10 text-center">
+        <h1 className="text-3xl font-bold text-orange-700">Welcome to Amma's Home Flavors</h1>
+        <p className="text-lg text-gray-600 mt-2">Fresh & Homemade Delights</p>
+      </header>
+
+      {/* Product Showcase */}
+      <section className="p-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+        {[1, 2, 3].map((item) => (
+          <Card key={item} className="border border-gray-300">
+            <CardContent className="p-4 text-center">
+              <img src="/placeholder.jpg" alt="Product" className="w-full h-40 object-cover" />
+              <h2 className="text-lg font-bold mt-2">Product {item}</h2>
+              <p className="text-gray-600">Delicious homemade item.</p>
+              <Button className="mt-2 flex items-center">
+                <ShoppingCart className="mr-2" /> Add to Cart
+              </Button>
+            </CardContent>
+          </Card>
+        ))}
+      </section>
+    </div>
+  );
+};
+
+export default HomePage;
